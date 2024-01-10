@@ -1,6 +1,6 @@
 {
-  "name": "template-astro",
-  "version": "0.0.2",
+  "name": "template-three",
+  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,20 +12,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/d-futenma/template-astro"
+    "url": "git+https://github.com/d-futenma/template-three"
   },
   "dependencies": {
-    "astro": "^4.0.3"
+    "astro": "^4.1.1",
+    "lil-gui": "^0.19.1",
+    "three": "^0.160.0"
   },
   "volta": {
     "node": "18.16.1"
   },
   "devDependencies": {
     "@markuplint/astro-parser": "^3.12.0",
+    "@types/three": "^0.160.0",
     "markuplint": "^3.15.0",
     "nib": "^1.2.0",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
-    "stylus": "^0.62.0"
+    "stylus": "^0.62.0",
+    "vite-plugin-glsl": "^1.2.1"
   }
 }

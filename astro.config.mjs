@@ -1,5 +1,6 @@
 import path from 'path'
 import url from 'url'
+import glsl from "vite-plugin-glsl";
 import { defineConfig } from 'astro/config'
 import { SITE_URL } from './src/site.config'
 
@@ -19,6 +20,7 @@ export default defineConfig({
     inlineStylesheets: 'never',
   },
   vite: {
+    plugins: [glsl()],
     css: {
       preprocessorOptions: {
         stylus: {
