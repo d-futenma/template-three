@@ -1,0 +1,26 @@
+import WebGL from '../WebGL.js'
+
+export default class World {
+  constructor() {
+    this.webgl = new WebGL()
+    this.scene = this.webgl.scene
+
+    // Test mesh
+    this.param = {
+      width: 1,
+      height: 1,
+      color: 0xff0000,
+      side: THREE.DoubleSide,
+    }
+
+    const { width, height, color, side } = this.param
+    this.planeGeometry = new THREE.PlaneGeometry(width, height)
+    this.planeMaterial = new THREE.MeshBasicMaterial({ color, side})
+
+    const testMesh = new THREE.Mesh(
+      this.planeGeometry,
+      this.planeMaterial
+    )
+    this.scene.add(testMesh)
+  }
+}

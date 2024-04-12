@@ -1,29 +1,42 @@
-import Stage from './Stage'
-import Mesh from './Mesh'
-import Resize from './Resize'
+import Sizes from './webgl-utils/Sizes'
+import Time from './webgl-utils/Time'
+import Camera from './Camera'
+import Renderer from './Renderer'
+import World from './world/World'
+import Debug from './webgl-utils/Debug'
+
+let instance = null
 
 export default class WebGL {
   constructor() {
-    this.stage
-    this.mesh
-    this.resize
+    if (instance) return instance
+    instance = this
 
-    this.$canvas = document.querySelector('[data-webgl]')
+    this.canvas = document.querySelector('[data-webgl]')
+    this.debug = new Debug()
+    this.sizes = new Sizes()
+    this.time = new Time()
+    this.scene = new THREE.Scene()
+    this.camera = new Camera()
+    this.renderer = new Renderer()
+    this.world = new World()
 
-    this.createStage()
-    this.createMesh()
-    this.createResize()
+    this.sizes.on('resize', () => {
+      this.resize()
+    })
+
+    this.time.on('tick', () => {
+      this.update()
+    })
   }
 
-  createStage() {
-    this.stage = new Stage()
+  resize() {
+    this.camera.resize()
+    this.renderer.resize()
   }
 
-  createMesh() {
-    this.mesh = new Mesh(this.stage.scene)
-  }
-
-  createResize() {
-    this.resize = new Resize(this.stage.camera, this.stage.renderer)
+  update() {
+    this.camera.update()
+    this.renderer.update()
   }
 }
