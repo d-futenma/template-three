@@ -21,6 +21,10 @@ export default class WebGL {
     this.renderer = new Renderer()
     this.world = new World()
 
+    this.bindEvents()
+  }
+
+  bindEvents() {
     this.sizes.on('resize', () => {
       this.resize()
     })
