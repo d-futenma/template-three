@@ -8,29 +8,29 @@ export default class Renderer {
     this.scene = this.webgl.scene
     this.camera = this.webgl.camera
 
-    this.setInstance()
+    this.setupRenderer()
   }
 
-  setInstance() {
-    this.instance = new THREE.WebGLRenderer({
+  setupRenderer() {
+    this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       alpha: true,
       antialias: true,
     })
-    this.instance.toneMapping = THREE.CineonToneMapping
-    this.instance.toneMappingExposure = 1.75
-    this.instance.shadowMap.enabled = true
-    this.instance.shadowMap.type = THREE.PCFSoftShadowMap
-    this.instance.setSize(this.sizes.width, this.sizes.height)
-    this.instance.setPixelRatio(this.sizes.pixelRatio)
+    this.renderer.toneMapping = THREE.CineonToneMapping
+    this.renderer.toneMappingExposure = 1.75
+    this.renderer.shadowMap.enabled = true
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    this.renderer.setSize(this.sizes.width, this.sizes.height)
+    this.renderer.setPixelRatio(this.sizes.pixelRatio)
   }
 
   resize() {
-    this.instance.setSize(this.sizes.width, this.sizes.height)
-    this.instance.setPixelRatio(this.sizes.pixelRatio)
+    this.renderer.setSize(this.sizes.width, this.sizes.height)
+    this.renderer.setPixelRatio(this.sizes.pixelRatio)
   }
 
   update() {
-    this.instance.render(this.scene, this.camera.instance)
+    this.renderer.render(this.scene, this.camera.camera)
   }
 }

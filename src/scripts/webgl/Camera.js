@@ -8,7 +8,7 @@ export default class Camera {
     this.scene = this.webgl.scene
     this.canvas = this.webgl.canvas
 
-    this.param = {
+    this.params = {
       fovy: 100,
       aspect: this.sizes.width / this.sizes.height,
       near: 0.1,
@@ -16,31 +16,31 @@ export default class Camera {
       x: 0.0,
       y: 0.0,
       z: 1.0,
-      lookAt: new THREE.Vector3(0.0, 0.0, 0.0),
+      // lookAt: new THREE.Vector3(0.0, 0.0, 0.0),
     }
 
-    this.setInstance()
-    this.setControls()
+    this.setupCamera()
+    this.setupCameraControls()
   }
 
-  setInstance() {
-    const { fovy, aspect, near, far, x, y, z } = this.param
-    this.instance = new THREE.PerspectiveCamera(fovy, aspect, near, far)
-    this.instance.position.set(x, y, z)
-    this.scene.add(this.instance)
+  setupCamera() {
+    const { fovy, aspect, near, far, x, y, z } = this.params
+    this.camera = new THREE.PerspectiveCamera(fovy, aspect, near, far)
+    this.camera.position.set(x, y, z)
+    this.scene.add(this.camera)
   }
 
-  setControls() {
-    this.controls = new OrbitControls(this.instance, this.canvas)
-    this.controls.enableDamping = true
+  setupCameraControls() {
+    this.cameraControls = new OrbitControls(this.camera, this.canvas)
+    this.cameraControls.enableDamping = true
   }
 
   resize() {
-    this.instance.aspect = this.sizes.width / this.sizes.height
-    this.instance.updateProjectionMatrix()
+    this.camera.aspect = this.sizes.width / this.sizes.height
+    this.camera.updateProjectionMatrix()
   }
 
   update() {
-    this.controls.update()
+    this.cameraControls.update()
   }
 }
