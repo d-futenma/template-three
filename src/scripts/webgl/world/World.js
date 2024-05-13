@@ -9,17 +9,10 @@ export default class World {
   }
 
   init() {
-    // this.loadTexture()
     this.create()
   }
 
-  // loadTexture() {
-  //   this.textureLoader = new THREE.TextureLoader()
-  //   this.texture = this.textureLoader.load('/assets/img/img.png')
-  // }
-
   create() {
-    // Test mesh
     this.params = {
       width: 1,
       height: 1,
@@ -36,7 +29,6 @@ export default class World {
       this.planeGeometry,
       this.planeMaterial
     )
-    // Test mesh
     
     this.scene.add(testMesh)
   }
