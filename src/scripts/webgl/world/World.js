@@ -1,4 +1,6 @@
 import WebGL from '../WebGL.js'
+import fragment from '../../../shaders/fragment.glsl'
+import vertex from '../../../shaders/vertex.glsl'
 
 export default class World {
   constructor() {
@@ -13,23 +15,21 @@ export default class World {
   }
 
   create() {
-    this.params = {
-      width: 1,
-      height: 1,
-      color: 0xff0000,
+    this.material = new THREE.ShaderMaterial({
+      vertexShader: vertex,
+      fragmentShader: fragment,
+      uniforms: {
+        uTime: { type: 'f', value: 0 },
+      },
       side: THREE.DoubleSide,
-    }
+      transparent: true,
+      depthWrite: false,
+      // wireframe: true,
+    })
 
-    const { width, height, color, side } = this.params
-    
-    this.planeGeometry = new THREE.PlaneGeometry(width, height)
-    this.planeMaterial = new THREE.MeshBasicMaterial({ color, side})
+    this.geometry = new THREE.PlaneGeometry(1, 1, 1, 1)
 
-    const testMesh = new THREE.Mesh(
-      this.planeGeometry,
-      this.planeMaterial
-    )
-    
-    this.scene.add(testMesh)
+    this.plane = new THREE.Mesh(this.geometry, this.material)
+    this.scene.add(this.plane)
   }
 }

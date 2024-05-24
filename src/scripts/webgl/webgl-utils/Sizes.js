@@ -4,8 +4,12 @@ export default class Sizes extends EventEmitter {
   constructor() {
     super()
 
+    this.init()
+  }
+
+  init() {
     this.setSizes()
-    this.bindEvents()
+    this.bindEvent()
   }
 
   setSizes() {
@@ -15,7 +19,7 @@ export default class Sizes extends EventEmitter {
     this.pixelRatio = Math.min(window.devicePixelRatio, 2)
   }
 
-  bindEvents() {
+  bindEvent() {
     window.addEventListener('resize', () => this.resize())
   }
 

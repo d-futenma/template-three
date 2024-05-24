@@ -9,13 +9,13 @@ export default class Camera {
     this.canvas = this.webgl.canvas
 
     this.params = {
-      fovy: 100,
+      fovy: 70,
       aspect: this.sizes.width / this.sizes.height,
-      near: 0.1,
-      far: 10.0,
-      x: 0.0,
-      y: 0.0,
-      z: 1.0,
+      near: 0.001,
+      far: 1000,
+      x: 0,
+      y: 0,
+      z: 2,
     }
 
     this.setupCamera()
@@ -34,12 +34,12 @@ export default class Camera {
     this.cameraControls.enableDamping = true
   }
 
+  update() {
+    this.cameraControls.update()
+  }
+
   resize() {
     this.camera.aspect = this.sizes.width / this.sizes.height
     this.camera.updateProjectionMatrix()
-  }
-
-  update() {
-    this.cameraControls.update()
   }
 }
