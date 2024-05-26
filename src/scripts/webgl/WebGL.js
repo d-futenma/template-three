@@ -18,10 +18,10 @@ export default class WebGL {
     this.sizes = new Sizes()
     this.time = new Time()
     
-    this.scene = new THREE.Scene()
-    this.camera = new Camera()
-    this.renderer = new Renderer()
-    this.world = new World()
+    this.sceneInstance = new THREE.Scene()
+    this.cameraInstance = new Camera()
+    this.rendererInstance = new Renderer()
+    this.worldInstance = new World()
     this.bindEvents()
   }
 
@@ -30,13 +30,15 @@ export default class WebGL {
     this.time.on('tick', () => this.update())
   }
 
-  resize() {
-    this.camera.resize()
-    this.renderer.resize()
+  update() {
+    this.cameraInstance.cameraControls.update()
+    this.rendererInstance.renderer.render(this.sceneInstance, this.cameraInstance.camera)
   }
 
-  update() {
-    this.camera.update()
-    this.renderer.update()
+  resize() {
+    this.cameraInstance.camera.aspect = this.sizes.width / this.sizes.height
+    this.cameraInstance.camera.updateProjectionMatrix()
+    this.rendererInstance.renderer.setSize(this.sizes.width, this.sizes.height)
+    this.rendererInstance.renderer.setPixelRatio(this.sizes.pixelRatio)
   }
 }

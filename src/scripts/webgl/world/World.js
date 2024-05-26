@@ -5,7 +5,7 @@ import vertex from '../../../shaders/vertex.glsl'
 export default class World {
   constructor() {
     this.webgl = new WebGL()
-    this.scene = this.webgl.scene
+    this.scene = this.webgl.sceneInstance
 
     this.init()
   }
@@ -28,7 +28,6 @@ export default class World {
     })
 
     this.geometry = new THREE.PlaneGeometry(1, 1, 1, 1)
-
     this.plane = new THREE.Mesh(this.geometry, this.material)
     this.scene.add(this.plane)
   }

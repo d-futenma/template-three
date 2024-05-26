@@ -5,7 +5,7 @@ export default class Camera {
   constructor() {
     this.webgl = new WebGL()
     this.sizes = this.webgl.sizes
-    this.scene = this.webgl.scene
+    this.scene = this.webgl.sceneInstance
     this.canvas = this.webgl.canvas
 
     this.params = {
@@ -32,14 +32,5 @@ export default class Camera {
   setupCameraControls() {
     this.cameraControls = new OrbitControls(this.camera, this.canvas)
     this.cameraControls.enableDamping = true
-  }
-
-  update() {
-    this.cameraControls.update()
-  }
-
-  resize() {
-    this.camera.aspect = this.sizes.width / this.sizes.height
-    this.camera.updateProjectionMatrix()
   }
 }
