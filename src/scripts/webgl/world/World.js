@@ -7,6 +7,7 @@ export default class World {
     this.webgl = new WebGL()
     this.sizes = this.webgl.sizes
     this.scene = this.webgl.scene
+    this.resources = this.webgl.resources
 
     this.createObject()
   }

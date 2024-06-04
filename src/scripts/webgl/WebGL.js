@@ -1,9 +1,11 @@
+// import Resources from './webgl-utils/Resources'
+// import sources from './sources.js'
 import AxesHelper from './webgl-utils/AxesHelper'
 import Debug from './webgl-utils/Debug'
 import Sizes from './webgl-utils/Sizes'
 import Time from './webgl-utils/Time'
 import Camera from './Camera'
-import OrbitControls from './webgl-utils/OrbitControls';
+import OrbitControls from './webgl-utils/OrbitControls'
 import Renderer from './Renderer'
 import World from './world/World'
 
@@ -14,6 +16,12 @@ export default class WebGL {
     if (instance) return instance
     instance = this
 
+    // this.resources = new Resources(sources)
+    // this.resources.load().then(() => this.init())
+    this.init()
+  }
+
+  init() {
     this.canvas = document.querySelector('[data-webgl]')
 
     this.scene = new THREE.Scene()
@@ -25,6 +33,7 @@ export default class WebGL {
     this.orbitControls = new OrbitControls()
     this.renderer = new Renderer()
     this.world = new World()
+
     this.bindEvents()
   }
 
