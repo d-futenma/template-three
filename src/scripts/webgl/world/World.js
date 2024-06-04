@@ -5,30 +5,29 @@ import vertex from '../../../shaders/vertex.glsl'
 export default class World {
   constructor() {
     this.webgl = new WebGL()
-    this.scene = this.webgl.sceneInstance
+    this.sizes = this.webgl.sizes
+    this.scene = this.webgl.scene
 
-    this.init()
+    this.createObject()
   }
 
-  init() {
-    this.create()
-  }
+  createObject() {
+    const geometry = new THREE.PlaneGeometry(1.0, 1.0)
 
-  create() {
     this.material = new THREE.ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
       uniforms: {
         uTime: { type: 'f', value: 0 },
+        uTextureAspect: { value: this.sizes.aspect },
+        uScreenAspect: { value: this.sizes.aspect },
       },
       side: THREE.DoubleSide,
       transparent: true,
       depthWrite: false,
-      // wireframe: true,
     })
 
-    this.geometry = new THREE.PlaneGeometry(1, 1, 1, 1)
-    this.plane = new THREE.Mesh(this.geometry, this.material)
-    this.scene.add(this.plane)
+    const plane = new THREE.Mesh(geometry, this.material)
+    this.scene.add(plane)
   }
 }

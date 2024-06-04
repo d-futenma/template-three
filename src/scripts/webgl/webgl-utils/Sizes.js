@@ -8,11 +8,11 @@ export default class Sizes extends EventEmitter {
   }
 
   init() {
-    this.setSizes()
+    this.setupSizes()
     this.bindEvent()
   }
 
-  setSizes() {
+  setupSizes() {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.aspect = this.width / this.height
@@ -20,11 +20,11 @@ export default class Sizes extends EventEmitter {
   }
 
   bindEvent() {
-    window.addEventListener('resize', () => this.resize())
+    window.addEventListener('resize', () => this.handleResize())
   }
 
-  resize() {
-    this.setSizes()
+  handleResize() {
+    this.setupSizes()
     this.trigger('resize')
   }
 }

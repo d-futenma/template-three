@@ -5,6 +5,8 @@ export default class Renderer {
     this.webgl = new WebGL()
     this.canvas = this.webgl.canvas
     this.sizes = this.webgl.sizes
+    this.scene = this.webgl.scene
+    this.cameraInstance = this.webgl.camera
 
     this.setupRenderer()
   }
@@ -15,7 +17,15 @@ export default class Renderer {
       alpha: true,
       antialias: true,
     })
+    this.renderer.setClearColor(new THREE.Color(0x000000));
     this.renderer.setSize(this.sizes.width, this.sizes.height)
-    this.renderer.setPixelRatio(this.sizes.pixelRatio)
+  }
+
+  update() {
+    this.renderer.render(this.scene, this.cameraInstance.camera)
+  }
+
+  handleResize() {
+    this.renderer.setSize(this.sizes.width, this.sizes.height)
   }
 }
