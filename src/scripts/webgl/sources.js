@@ -1,7 +1,9 @@
+import { dirImg } from '../../variables';
+
 export default [
   {
     name: 'photoTexture',
     type: 'texture',
-    path: '/assets/img/photo.jpg'
+    path: `${dirImg}photo.jpg`
   },
 ]

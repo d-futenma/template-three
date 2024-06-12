@@ -1,10 +1,10 @@
 ---
 // @ts-nocheck
-import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType } from '../variables'
+import { siteTitle, siteDescription, siteUrl, ogImg, ogSiteName, ogType, dirImg } from '../variables'
 import '../styles/style.styl'
 
 const {
-  siteTitle = siteTitle[0],
+  title = siteTitle[0],
   description = siteDescription[0],
   ogTitle = siteTitle[1] ?? siteTitle[0],
   ogDescription = siteDescription[1] ?? siteDescription[0],
@@ -19,7 +19,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-    <title>{siteTitle}</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content={ogTitle} />

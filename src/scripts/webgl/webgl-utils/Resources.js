@@ -12,17 +12,30 @@ export default class Resources {
   }
 
   load() {
-    const promises = this.sources.map((source) => this.loadSource(source))
+    const promises = this.sources.map((source) => {
+      return new Promise((resolve) => {
+        if (source.type === 'texture') {
+          this.loaders.textureLoader.load(source.path, (file) => {
+            this.sourceLoaded(source, file)
+            resolve(file)
+          })
+        } else if (source.type === 'gltfModel') {
+          this.loaders.gltfLoader.load(source.path, (file) => {
+            this.sourceLoaded(source, file)
+            resolve(file)
+          })
+        } else if (source.type === 'cubeTexture') {
+          this.loaders.cubeTextureLoader.load(source.path, (file) => {
+            this.sourceLoaded(source, file)
+            resolve(file)
+          })
+        }
+      })
+    })
     return Promise.all(promises).then(() => this.items)
   }
 
-  loadSource(source) {
-    return new Promise((resolve) => {
-      const loader = this.loaders[`${source.type}Loader`]
-      loader.load(source.path, (file) => {
-        this.items[source.name] = file
-        resolve(file)
-      })
-    })
+  sourceLoaded(source, file) {
+    this.items[source.name] = file
   }
 }

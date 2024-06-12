@@ -1,13 +1,7 @@
-// import Resources from './webgl-utils/Resources'
-// import sources from './sources.js'
-import AxesHelper from './webgl-utils/AxesHelper'
-import Debug from './webgl-utils/Debug'
 import Sizes from './webgl-utils/Sizes'
 import Time from './webgl-utils/Time'
-import Camera from './Camera'
-import OrbitControls from './webgl-utils/OrbitControls'
-import Renderer from './Renderer'
-import World from './world/World'
+import Stage from './Stage.js'
+import Mesh from './Mesh.js'
 
 let instance = null
 
@@ -16,39 +10,28 @@ export default class WebGL {
     if (instance) return instance
     instance = this
 
-    // this.resources = new Resources(sources)
-    // this.resources.load().then(() => this.init())
     this.init()
   }
 
   init() {
-    this.canvas = document.querySelector('[data-webgl]')
-
-    this.scene = new THREE.Scene()
-    this.axesHelper = new AxesHelper()
-    this.debug = new Debug()
     this.sizes = new Sizes()
     this.time = new Time()
-    this.camera = new Camera()
-    this.orbitControls = new OrbitControls()
-    this.renderer = new Renderer()
-    this.world = new World()
-
+    this.stage = new Stage(this.sizes)
+    this.mesh = new Mesh(this.stage.scene)
+    
     this.bindEvents()
   }
 
   bindEvents() {
     this.time.on('tick', () => this.update())
-    this.sizes.on('resize', () => this.handleResize())
+    this.sizes.on('resize', () => this.resize())
   }
 
   update() {
-    this.renderer.update()
-    this.orbitControls.update()
+    this.stage.update()
   }
 
-  handleResize() {
-    this.renderer.handleResize()
-    this.camera.handleResize()
+  resize() {
+    this.stage.resize()
   }
 }
