@@ -25,7 +25,6 @@ export default class Stage {
     this.setupRenderer()
     this.setupScene()
     this.setupCamera()
-    this.setupCameraControls()
   }
 
   setupRenderer() {
@@ -50,14 +49,8 @@ export default class Stage {
     this.scene.add(this.camera)
   }
 
-  setupCameraControls() {
-    this.cameraControls = new OrbitControls(this.camera, this.canvas)
-    this.cameraControls.enableDamping = true
-  }
-
   update() {
     this.renderer.render(this.scene, this.camera)
-    this.cameraControls.update()
   }
 
   resize() {

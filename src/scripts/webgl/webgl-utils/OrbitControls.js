@@ -1,17 +1,15 @@
-import WebGL from '../WebGL'
 import { OrbitControls as OC } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export default class OrbitControls {
-  constructor() {
-    this.webgl = new WebGL()
-    this.canvas = this.webgl.canvas
-    this.cameraInstance = this.webgl.camera
+  constructor(canvas, camera) {
+    this.canvas = canvas
+    this.camera = camera
 
     this.setupCameraControls()
   }
 
   setupCameraControls() {
-    this.cameraControls = new OC(this.cameraInstance.camera, this.canvas)
+    this.cameraControls = new OC(this.camera, this.canvas)
     this.cameraControls.enableDamping = true
   }
 

@@ -1,4 +1,4 @@
-import { dirImg } from '../../variables';
+import { dirImg } from '../../site.config';
 
 export default [
   {
