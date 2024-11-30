@@ -4,6 +4,7 @@ import url from 'url'
 import config from './src/site-config'
 import { siteUrl } from './src/consts'
 import deleteDirectory from './src/integrations/deleteDirectory'
+import glsl from "vite-plugin-glsl";
 
 const dirName = path.dirname(url.fileURLToPath(import.meta.url))
 const { root, css, js, deletes } = config.build
@@ -58,6 +59,7 @@ export default defineConfig({
         },
       },
     },
+    plugins: [glsl()],
   },
   integrations: [deleteDirectory(root, deletes)],
 })
