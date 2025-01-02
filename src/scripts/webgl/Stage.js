@@ -1,7 +1,7 @@
 export default class Stage {
   constructor(canvas, sizes) {
-    this.sizes = sizes
     this.canvas = canvas
+    this.sizes = sizes
 
     this.init()
   }
