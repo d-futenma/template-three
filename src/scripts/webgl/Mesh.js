@@ -1,9 +1,10 @@
-import fragment from '../../shaders/fragment.glsl'
-import vertex from '../../shaders/vertex.glsl'
+import fragment from '@/shaders/fragment.glsl'
+import vertex from '@/shaders/vertex.glsl'
 
 export default class Mesh {
-  constructor(scene, resources = null) {
-    this.scene = scene
+  constructor(stage, resources = null) {
+    this.scene = stage.scene
+    this.resources = resources
 
     this.create()
   }
@@ -14,12 +15,15 @@ export default class Mesh {
     this.material = new THREE.ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
-      uniforms: {
-        uTime: { type: 'f', value: 0 },
-      },
       side: THREE.DoubleSide,
       transparent: true,
       depthWrite: false,
+      extensions: {
+        derivatives: '#extension GL_OES_standard_derivatives : enable'
+      },
+      uniforms: {
+        uTime: { type: 'f', value: 0 },
+      },
     })
 
     const plane = new THREE.Mesh(geometry, this.material)

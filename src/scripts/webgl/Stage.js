@@ -1,9 +1,7 @@
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-
 export default class Stage {
-  constructor(sizes) {
+  constructor(canvas, sizes) {
     this.sizes = sizes
-    this.canvas = document.querySelector('[data-webgl]')
+    this.canvas = canvas
 
     this.init()
   }

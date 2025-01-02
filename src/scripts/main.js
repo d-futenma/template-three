@@ -1,8 +1,8 @@
 import * as THREE from 'three'
-import WebGL from './webgl/WebGL'
+import App from '@/scripts/App'
 
 window.THREE = THREE
 
 window.addEventListener('DOMContentLoaded', () => {
-  const webgl = new WebGL()
+  new App()
 })

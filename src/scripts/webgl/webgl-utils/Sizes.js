@@ -1,4 +1,4 @@
-import EventEmitter from '../../utils/EventEmitter'
+import EventEmitter from '@/scripts/utils/EventEmitter'
 
 export default class Sizes extends EventEmitter {
   constructor() {

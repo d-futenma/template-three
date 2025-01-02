@@ -1,8 +1,8 @@
-import Sizes from './webgl-utils/Sizes'
-import Time from './webgl-utils/Time'
-import OrbitControls from './webgl-utils/OrbitControls'
-import Stage from './Stage.js'
-import Mesh from './Mesh.js'
+import Sizes from '@/scripts/webgl/webgl-utils/Sizes'
+import Time from '@/scripts/webgl/webgl-utils/Time'
+import OrbitControls from '@/scripts/webgl/webgl-utils/OrbitControls'
+import Stage from '@/scripts/webgl/Stage.js'
+import Mesh from '@/scripts/webgl/Mesh.js'
 
 let instance = null
 
@@ -11,15 +11,17 @@ export default class WebGL {
     if (instance) return instance
     instance = this
 
+    this.canvas = document.querySelector('[data-webgl]')
+
     this.init()
   }
 
   init() {
     this.sizes = new Sizes()
     this.time = new Time()
-    this.stage = new Stage(this.sizes)
-    this.mesh = new Mesh(this.stage.scene)
-    this.orbitControls = new OrbitControls(this.stage.canvas, this.stage.camera)   
+    this.stage = new Stage(this.canvas, this.sizes)
+    this.mesh = new Mesh(this.stage)
+    this.orbitControls = new OrbitControls(this.canvas, this.stage.camera)
     
     this.bindEvents()
   }
