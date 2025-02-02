@@ -59,7 +59,11 @@ export default defineConfig({
         },
       },
     },
-    plugins: [glsl()],
+    plugins: [
+      glsl({
+        compress: true,
+      })
+    ],
   },
   integrations: [deleteDirectory(root, deletes)],
 })
