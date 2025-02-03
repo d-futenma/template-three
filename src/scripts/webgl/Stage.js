@@ -31,7 +31,7 @@ export default class Stage {
       alpha: true,
       antialias: true,
     })
-    this.renderer.setClearColor(new THREE.Color(0x000000))
+    this.renderer.setClearColor(new THREE.Color(0xffffff))
     this.renderer.setSize(this.sizes.width, this.sizes.height)
   }
 

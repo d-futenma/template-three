@@ -1,0 +1,7 @@
+.webgl {
+  height: 100%;
+  inset: 0;
+  outline: none;
+  position: fixed;
+  width: 100%;
+}
