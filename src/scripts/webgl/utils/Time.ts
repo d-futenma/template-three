@@ -1,7 +1,7 @@
-import { Clock } from 'three';
+import * as THREE from "three";
 
 export default class Time extends EventTarget {
-  clock!: Clock;
+  clock!: THREE.Clock;
   delta: number = 0;
   elapsed: number = 0;
 
@@ -16,7 +16,7 @@ export default class Time extends EventTarget {
   }
 
   private setupClock() {
-    this.clock = new Clock();
+    this.clock = new THREE.Clock();
   }
 
   private tick() {
