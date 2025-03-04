@@ -1,14 +1,17 @@
 import * as THREE from "three";
+import Time from "@/scripts/webgl/utils/Time";
 import fragment from "@/shaders/fragment.glsl";
 import vertex from "@/shaders/vertex.glsl";
 
 export default class Mesh {
   private scene: THREE.Scene;
+  private time: Time;
+
   private material!: THREE.ShaderMaterial;
 
-  constructor(scene: THREE.Scene) {
+  constructor(scene: THREE.Scene, time: Time) {
     this.scene = scene;
-
+    this.time = time;
     this.create();
   }
 
@@ -28,5 +31,9 @@ export default class Mesh {
 
     const plane = new THREE.Mesh(geometry, this.material);
     this.scene.add(plane);
+  }
+
+  update() {
+    this.material.uniforms.uTime.value += this.time.delta;
   }
 }

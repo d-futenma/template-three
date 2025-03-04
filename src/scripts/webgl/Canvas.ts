@@ -9,6 +9,7 @@ export default class Canvas {
   private time!: Time;
   private sizes!: Sizes;
   private stage!: Stage;
+  private mesh!: Mesh;
   private orbitControls!: OrbitControls;
 
   constructor() {
@@ -22,7 +23,7 @@ export default class Canvas {
     this.time = new Time();
     this.sizes = new Sizes();
     this.stage = new Stage(this.canvas!, this.sizes);
-    new Mesh(this.stage.scene);
+    this.mesh = new Mesh(this.stage.scene, this.time);
     this.orbitControls = new OrbitControls(this.canvas!, this.stage.camera);
 
     this.bindEvents();
@@ -35,6 +36,7 @@ export default class Canvas {
 
   private update() {
     this.stage.update();
+    this.mesh.update();
     this.orbitControls.update();
   }
 
