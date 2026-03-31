@@ -26,6 +26,7 @@ export default class Mesh {
       depthWrite: false,
       uniforms: {
         uTime: { value: 0 },
+        u_resolution: { value: new THREE.Vector2() },
       },
     });
 
